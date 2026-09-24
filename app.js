@@ -18,11 +18,11 @@ const quizQuestions = [
 let currentQuestionIndex = 0;
 let userProfileArchetype = "AMBIENT_CORE";
 
-// Live server visitor monitoring logs parsed into root dashboard panels
+// Admin monitor logs tracking user data streams
 const activeVisitorLogs = [
-    { ip: "172.56.21.94", profile: "WORSHIP_ARTS_BRIGHT", action: "FORGED_DSP_VST3" },
-    { ip: "198.24.142.12", profile: "CINEMATIC_DARK_OBSIDIAN", action: "DOWNLOADED_STEMS" },
-    { ip: "64.233.160.8", profile: "INDUSTRIAL_LOFI", action: "SEARCH_FORGE_RUN" }
+    { ip: "172.56.21.94", profile: "WORSHIP_ARTS_BRIGHT", action: "DEPOSITED_TUBE_SAT" },
+    { ip: "198.24.142.12", profile: "CINEMATIC_DARK_OBSIDIAN", action: "CLAIMED_SPACE_REVERB" },
+    { ip: "64.233.160.8", profile: "INDUSTRIAL_LOFI", action: "MOUNTED_SWAP_BLOCK" }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -80,12 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function compileProfileResults() {
         quizCard.classList.add('hidden');
         userWorkbench.classList.remove('hidden');
-        if (dnaTag) dnaTag.innerText = `[ ENGINE_CORE // STANDBY ]`;
+        if (dnaTag) dnaTag.innerText = `[ HUB // OPEN_MARKET ]`;
     }
 
     loadQuizQuestion();
 
-    // Secure Hidden Override Macro (Shift + A + D)
+    // Secure Hidden Override Macro Shortcut Detection (Shift + A + D)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Shift') heldKeys.shift = true;
         if (e.key.toLowerCase() === 'a') heldKeys.a = true;
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key.toLowerCase() === 'd') heldKeys.d = false;
     });
 
-    // Admin Clearance Verification (477643)
+    // Admin Clearance Code Matching Verification (477643)
     document.getElementById('admin-auth-form')?.addEventListener('submit', (e) => {
         e.preventDefault();
         const inputPass = document.getElementById('admin-password').value;
@@ -114,105 +114,96 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputPass === "477643") {
             adminLoginCard.classList.add('hidden');
             adminDashboard.classList.remove('hidden');
-            window.initializeAdminTelemetryFeed(); // Invokes rendering loop from Part 2
+            window.initializeAdminSwapLogs(); // Triggers display rendering script from Part 2
+            console.log("Root authority verified. Subdomain console active.");
         } else {
-            alert("SECURITY ALERT // INCORRECT GATEWAY CLEARANCE PASS.");
+            alert("SECURITY ALERT // INCORRECT KEY SPECIFIED.");
             document.getElementById('admin-password').value = '';
         }
     });
 /* ==========================================================================
-   BPLUGINS ENGINE // PART 2: PROMPT PROCESSING & DYNAMIC KNOB MATRICES
+   BPLUGINS ENGINE // PART 2: THE COMMUNITY TRADING BLOCK MECHANICS
    ========================================================================== */
 
-    // Search Component Selection Targets
-    const searchBar = document.getElementById('artist-search-bar');
-    const generateSearchBtn = document.getElementById('generate-search-btn');
-    const generatedControlsCard = document.getElementById('generated-controls-card');
-    const dynamicKnobMatrix = document.getElementById('dynamic-knob-matrix');
-    const sandboxGuidanceText = document.getElementById('sandbox-guidance-text');
-    const downloadPackageBtn = document.getElementById('download-package-btn');
-    
-    const label1 = document.getElementById('slider-label-1');
-    const label2 = document.getElementById('slider-label-2');
-    const slider1 = document.getElementById('dynamic-slider-1');
-    const slider2 = document.getElementById('dynamic-slider-2');
-    const val1 = document.getElementById('dynamic-val-1');
-    const val2 = document.getElementById('dynamic-val-2');
-    const genStemLabel = document.getElementById('gen-stem-label');
+    // Swap Component Selection Targets
+    const tradeInput = document.getElementById('artist-search-bar');
+    const postTradeBtn = document.getElementById('generate-search-btn');
+    const swapListWrapper = document.getElementById('swap-list-wrapper');
+    const claimPackageBtn = document.getElementById('download-package-btn');
     const statusText = document.getElementById('engine-status-text');
     const dnaTag = document.getElementById('profile-dna-tag');
     const adminDashboard = document.getElementById('admin-dashboard-view');
     const userWorkbench = document.getElementById('user-workbench-view');
 
-    // Real-Time Slider Value Monitors
-    slider1?.addEventListener('input', (e) => { val1.innerText = `${(e.target.value / 10).toFixed(1)}dB`; });
-    slider2?.addEventListener('input', (e) => { val2.innerText = `${(e.target.value / 10).toFixed(1)}s`; });
+    // Interactive Swap Function: Depositing Custom Plugins Natively
+    postTradeBtn?.addEventListener('click', () => {
+        const assetName = tradeInput.value.trim();
 
-    // Natural Language Search Optimization Script
-    generateSearchBtn?.addEventListener('click', () => {
-        const queryText = searchBar.value.trim().toLowerCase();
-
-        if (queryText === '') {
-            alert("SYS_ERROR // SEARCH FIELD CANNOT BE EMPTY.");
+        if (assetName === '') {
+            alert("SYS_ERROR // REQUISITION TITLE CORES CANNOT BE EMPTY.");
             return;
         }
 
-        statusText.innerText = "PARSING_STYLE...";
-        generateSearchBtn.innerText = "[DECOMPOSING_STYLE_BLUEPRINTS...]";
-        generateSearchBtn.disabled = true;
+        statusText.innerText = "POSTING_ASSET...";
+        postTradeBtn.innerText = "[ENCRYPTING_FILE_PACKETS...]";
+        postTradeBtn.disabled = true;
 
         setTimeout(() => {
-            sandboxGuidanceText.innerText = "CUSTOM_PLUGIN_COMPILED_SUCCESSFULLY // Interactive variables calibrated to your text prompt variables below:";
-            dynamicKnobMatrix.classList.remove('hidden');
-            generatedControlsCard.classList.add('functionality-reveal-active');
+            // Append a new item listing row dynamically straight onto the live queue block
+            const newListing = document.createElement('div');
+            newListing.className = 'stacked-layer-item';
+            newListing.innerHTML = `
+                <span>📦 ${assetName}</span>
+                <span class="remove-layer" style="color:#D2C9BD; cursor:pointer;">[CLAIM]</span>
+            `;
             
-            // Intelligently configure interactive dials based on search parameters
-            if (queryText.includes("delay") || queryText.includes("reverb") || queryText.includes("space")) {
-                label1.innerText = "FEEDBACK_REGENERATION_PERCENT //";
-                label2.innerText = "SPATIAL_ROOM_DECAY_TIME //";
-                slider1.value = 65; val1.innerText = "65%";
-                slider2.value = 85; val2.innerText = "8.5s";
-                genStemLabel.innerText = "⚡ GENERATED_AMBIENT_REVERB_STEM.wav";
-                dnaTag.innerText = "[ BLUEPRINT // TIME_BASED_DSP ]";
-            } else if (queryText.includes("warm") || queryText.includes("tube") || queryText.includes("distortion") || queryText.includes("saturation")) {
-                label1.innerText = "VALVE_TUBE_DRIVE_GAIN //";
-                label2.innerText = "EVEN_ORDER_HARMONIC_MIX //";
-                slider1.value = 75; val1.innerText = "7.5dB";
-                slider2.value = 45; val2.innerText = "45%";
-                genStemLabel.innerText = "⚡ GENERATED_SATURATED_TAPE_ROOM.wav";
-                dnaTag.innerText = "[ BLUEPRINT // HARMONIC_FORGE ]";
-            } else {
-                label1.innerText = "COMPRESSION_THRESHOLD //";
-                label2.innerText = "MAKEUP_OUTPUT_GAIN //";
-                slider1.value = 40; val1.innerText = "-4.0dB";
-                slider2.value = 20; val2.innerText = "+2.0dB";
-                genStemLabel.innerText = "⚡ GENERATED_BALANCED_MIX_STEM.wav";
-                dnaTag.innerText = "[ BLUEPRINT // CUSTOM_DYNAMIC_FX ]";
-            }
-
-            statusText.innerText = "PRINT_SUCCESS";
-            downloadPackageBtn.innerText = "[DOWNLOAD_CUSTOM_PLUGIN_&_STEMS]";
-            downloadPackageBtn.disabled = false;
-            generateSearchBtn.innerText = "[ENGAGE_AI_STYLE_GENERATION]";
-            generateSearchBtn.disabled = false;
-        }, 2800);
+            swapListWrapper.appendChild(newListing);
+            
+            // Re-calibrate input states back to default
+            tradeInput.value = '';
+            statusText.innerText = "SWAP_ACTIVE";
+            postTradeBtn.innerText = "[POST_TO_OPEN_SWAP_BLOCK]";
+            postTradeBtn.disabled = false;
+            
+            alert(`SUCCESS // Your custom asset "${assetName}" has been posted to the open BZAUDIO Swap block.`);
+        }, 2000);
     });
 
-    downloadPackageBtn?.addEventListener('click', () => {
-        statusText.innerText = "ASSET_EXPORTED";
-        alert("SYS_SUCCESS // Custom plugin binary block (.vst3) and matching multi-track stem packet zipped successfully.");
+    // Selecting and Highlighting listings to Claim
+    swapListWrapper?.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-layer')) {
+            const targetRow = e.target.parentElement;
+            const targetName = targetRow.querySelector('span').innerText;
+            
+            document.querySelectorAll('.stacked-layer-item').forEach(row => row.style.borderColor = 'rgba(210, 201, 189, 0.15)');
+            targetRow.style.borderColor = '#D2C9BD';
+            
+            claimPackageBtn.innerText = `[DOWNLOAD_${targetName.replace('📦 ', '').toUpperCase().replace(/ /g, '_')}]`;
+            claimPackageBtn.disabled = false;
+            claimPackageBtn.style.backgroundColor = '#3A3025';
+            claimPackageBtn.style.color = '#FFFFFF';
+        }
     });
 
-    // Global Admin Telemetry Tracker Stream Logger
-    window.initializeAdminTelemetryFeed = function() {
+    claimPackageBtn?.addEventListener('click', () => {
+        statusText.innerText = "ASSET_CLAIMED";
+        alert("DOWNLOAD_SUCCESS // Community digital asset verified and downloaded cleanly to your DAW directory path.");
+        claimPackageBtn.disabled = true;
+        claimPackageBtn.innerText = "[SELECT_A_LISTING_ABOVE]";
+        claimPackageBtn.style.backgroundColor = 'transparent';
+        claimPackageBtn.style.color = '#8C8275';
+    });
+
+    // Admin Telemetry Panel Rendering Loop (Called upon correct password authorization)
+    window.initializeAdminSwapLogs = function() {
         const telemetryPanel = document.getElementById('admin-telemetry-card');
         if (!telemetryPanel) return;
 
         let htmlFeed = `
             <div class="card-header">
                 <span class="tech-id">LIVE_TELEMETRY // FEED_ACTIVE</span>
-                <h2>ACTIVE_VISITOR_MONITOR</h2>
-                <p>Real-time telemetry stream parsing tracking current users processing assets on the workbench matrix.</p>
+                <h2>SWAP_BAY_MONITOR</h2>
+                <p>Tracking current community transaction logs, download traffic parameters, and open file deposits.</p>
             </div>
             <div class="control-matrix" style="font-size: 0.65rem; line-height: 1.6; max-height: 180px; overflow-y: auto; margin-bottom: 25px;">
         `;
@@ -221,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
             htmlFeed += `
                 <div style="border-bottom: 1px dashed rgba(210,201,189,0.1); padding: 5px 0;">
                     <span style="color: #FFF;">👤 ADDR: ${user.ip}</span><br>
-                    <span>↳ TYPE: ${user.profile} | ACTION: <span style="color: #FFFFFF;">${user.action}</span></span>
+                    <span>↳ PROFILE: ${user.profile} | BLOCK_ACTION: <span style="color: #FFFFFF;">${user.action}</span></span>
                 </div>
             `;
         });
@@ -233,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('logout-admin-btn')?.addEventListener('click', () => {
             adminDashboard.classList.add('hidden');
             userWorkbench.classList.remove('hidden');
-            statusText.innerText = "ENGINE_READY";
-            dnaTag.innerText = "[ PROMPT_INPUT_STANDBY ]";
+            statusText.innerText = "SWAP_ACTIVE";
+            dnaTag.innerText = "[ HUB // OPEN_MARKET ]";
         });
     };
 });
