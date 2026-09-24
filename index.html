@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPLUGINS // ARTISAN GENERATION CORE</title>
+    <title>BZAUDIO // THE ARTISAN SWAP-BAY</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- OVERLAY UTILITY HEADER NAVIGATION -->
+    <!-- STYLISH APPLICTION OVERLAY NAVIGATION -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-brand" id="nav-logo">BPLUGINS // MATRIX</a>
+            <a href="#" class="nav-brand" id="nav-logo">BZAUDIO // SWAP_BAY</a>
             <ul class="nav-links">
                 <li><a href="#" class="active" id="nav-home">HOME</a></li>
-                <li><a href="#" id="nav-shop">SHOP</a></li>
+                <li><a href="#" id="nav-shop">SWAP BLOCK</a></li>
                 <li><a href="#" id="nav-about">ABOUT US</a></li>
                 <li><a href="#" id="nav-contact">CONTACT</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- THE LIVING VAN GOGH ENVIRONMENT CANVAS -->
+    <!-- THE LIVING ENVIRONMENT ENVIRONMENT CANVAS -->
     <main class="living-meadow-frame">
 
         <!-- LAYER A: 10-QUESTION STYLE ONBOARDING MATRIX -->
         <section class="artisan-modal-box" id="onboarding-quiz-card">
             <div class="portal-header">
                 <span class="lock-glyph">✺</span>
-                <h2>SONIC_DNA_ONBOARDING</h2>
+                <h2>BZAUDIO_DNA_ONBOARDING</h2>
                 <p id="quiz-progress-text">QUESTION // 01 OF 10</p>
             </div>
             
@@ -43,28 +43,32 @@
         </section>
 
 
-        <!-- LAYER B: THE LIVING USER WORKBENCH ENGINE (Revealed after onboarding/login) -->
+        <!-- LAYER B: THE LIVING USER SWAP WORKBENCH (Revealed after onboarding/login) -->
         <div class="dual-engine-workbench hidden" id="user-workbench-view">
             
-            <!-- Left Console Panel: Promp Input Forge Engine -->
-            <section class="workbench-card" id="prompt-generator-card">
+            <!-- Left Console Panel: Submit to Trading Block -->
+            <section class="workbench-card" id="submit-trade-card">
                 <div class="card-header">
-                    <span class="tech-id">GENERATION_CORE // 01</span>
-                    <h2>ARTIST_INPUT_FORGE</h2>
-                    <p>Describe exactly what you want your software plugin or sample session to sound like in your own words.</p>
+                    <span class="tech-id">TRADING_BLOCK // SUBMIT</span>
+                    <h2>POST_YOUR_PLUGIN</h2>
+                    <p>Deposit a custom plugin preset pattern, EQ curve, or signature signal chain onto the open block for other artists to download.</p>
                 </div>
 
                 <div class="control-matrix">
                     <div class="control-row">
-                        <label>NATURAL_LANGUAGE_PROMPT_INPUT //</label>
-                        <!-- THE ARTIST STYLE PROMPT SEARCH BAR -->
+                        <label>ASSET_TITLE_OR_ARTIST_STYLE //</label>
+                        <!-- THE SWAP PROPERTY SEARCH BAR -->
                         <div class="search-bar-wrapper">
-                            <input type="text" id="artist-search-bar" placeholder="e.g., wide sweeping ambient tape delay for moody guitar..." autocomplete="off">
+                            <input type="text" id="artist-search-bar" placeholder="e.g., Ambient Edge Delay (.vst3)..." autocomplete="off">
                         </div>
+                    </div>
+                    <div class="control-row">
+                        <label>INPUT_PRESET_WARMTH_DB //</label>
+                        <input type="range" min="0" max="100" value="65" class="palette-slider" id="trade-warmth">
                     </div>
                 </div>
 
-                <button class="forge-trigger-btn" id="generate-search-btn" style="background-color: #3A3025; color: #FFF;">[ENGAGE_AI_STYLE_GENERATION]</button>
+                <button class="forge-trigger-btn" id="generate-search-btn" style="background-color: #3A3025; color: #FFF;">[POST_TO_OPEN_SWAP_BLOCK]</button>
             </section>
 
             <!-- Center Axis: Spinning Van Gogh Vinyl Platter -->
@@ -75,44 +79,35 @@
                     </div>
                 </div>
                 <div class="vinyl-metadata-overlay">
-                    <h1 id="engine-status-text">ENGINE_READY</h1>
-                    <p id="profile-dna-tag">[ PROMPT_INPUT_STANDBY ]</p>
+                    <h1 id="engine-status-text">SWAP_ACTIVE</h1>
+                    <p id="profile-dna-tag">[ HUB // OPEN_MARKET ]</p>
                 </div>
             </section>
 
-            <!-- Right Console Panel: Interactive Custom Variable Sandbox (Dynamic Output) -->
+            <!-- Right Console Panel: Active Open Swap Listings -->
             <section class="workbench-card" id="generated-controls-card">
                 <div class="card-header">
-                    <span class="tech-id">GENERATION_CORE // 02</span>
-                    <h2>INTELLIGENT_SANDBOX</h2>
-                    <p id="sandbox-guidance-text">Enter style parameters on the left search track to unpack tactile plugin functions here.</p>
+                    <span class="tech-id">TRADING_BLOCK // DOWNLOADS</span>
+                    <h2>OPEN_SWAP_LISTINGS</h2>
+                    <p id="sandbox-guidance-text">Recent community-deposited processing algorithms available for free download:</p>
                 </div>
 
-                <!-- Interactive Functions Area (Populated dynamically on generation matching) -->
-                <div class="control-matrix hidden" id="dynamic-knob-matrix">
-                    <div class="control-row">
-                        <label id="slider-label-1">ANALOG_WARMTH_DB //</label>
-                        <div class="slider-readout-row">
-                            <input type="range" min="0" max="100" value="70" class="palette-slider" id="dynamic-slider-1">
-                            <span class="tech-val" id="dynamic-val-1">7.0dB</span>
+                <!-- Active Swap Queue Container (Populated dynamically on initialization/posts) -->
+                <div class="control-matrix" id="dynamic-knob-matrix" style="max-height: 220px; overflow-y: auto;">
+                    <div class="stacker-drop-zone" id="swap-list-wrapper">
+                        <!-- Community trades inject here -->
+                        <div class="stacked-layer-item">
+                            <span>📦 Vintage Tube Saturation (.component)</span>
+                            <span class="remove-layer" style="color:#D2C9BD; cursor:pointer;">[CLAIM]</span>
                         </div>
-                    </div>
-                    <div class="control-row">
-                        <label id="slider-label-2">SPACE_DECAY_SIZE //</label>
-                        <div class="slider-readout-row">
-                            <input type="range" min="0" max="100" value="85" class="palette-slider" id="dynamic-slider-2">
-                            <span class="tech-val" id="dynamic-val-2">8.5s</span>
-                        </div>
-                    </div>
-                    <div class="control-row">
-                        <label>SAMPLE_LAYER_STACKER //</label>
-                        <div class="stacker-drop-zone">
-                            <div class="stacked-layer-item" id="gen-stem-label">⚡ COMPILING_TARGET_STEM.wav</div>
+                        <div class="stacked-layer-item">
+                            <span>🎹 Cathedral Space Reverb (.vst3)</span>
+                            <span class="remove-layer" style="color:#D2C9BD; cursor:pointer;">[CLAIM]</span>
                         </div>
                     </div>
                 </div>
 
-                <button class="forge-trigger-btn" id="download-package-btn" disabled>[ASSET_COMPILATION_REQUIRED]</button>
+                <button class="forge-trigger-btn" id="download-package-btn" style="background-color: transparent; border-color: rgba(210, 201, 189, 0.3);" disabled>[SELECT_A_LISTING_ABOVE]</button>
             </section>
         </div>
 
@@ -140,20 +135,20 @@
 
         <!-- LAYER D: SECURE ADMINISTRATIVE CONTROL SUITE -->
         <div class="dual-engine-workbench hidden" id="admin-dashboard-view">
-            <!-- Left Console: Algorithm Editor -->
+            <!-- Left Console: Compliance Monitoring -->
             <section class="workbench-card">
                 <div class="card-header">
                     <span class="tech-id">ADMIN_PANEL // 01</span>
-                    <h2>ALGORITHM_CALIBRATION</h2>
-                    <p>Modify onboarding style calculations, question parameter maps, and baseline hardware modeling values.</p>
+                    <h2>SWAP_RULE_COMPLIANCE</h2>
+                    <p>Monitor community trade files, flag unauthorized software uploads, and verify metadata integrity profiles.</p>
                 </div>
                 <div class="control-matrix">
                     <div class="control-row">
-                        <label>DSP_TUBE_BIAS_RATIO //</label>
-                        <input type="range" min="0" max="100" value="82" class="palette-slider">
+                        <label>MAX_UPLOAD_SIZE_LIMIT_MB //</label>
+                        <input type="range" min="0" max="100" value="50" class="palette-slider">
                     </div>
                 </div>
-                <button class="forge-trigger-btn" style="background-color: #5C4D3C;">[PUSH_ALGORITHM_UPDATE]</button>
+                <button class="forge-trigger-btn" style="background-color: #5C4D3C;">[FLUSH_EXPIRED_SWAP_CACHE]</button>
             </section>
 
             <!-- Spindle Core Backup Readout -->
@@ -169,7 +164,7 @@
                 </div>
             </section>
 
-            <!-- Right Console Panel: Managed User Activity Feed (Populated by JS Engine) -->
+            <!-- Right Console Panel: Managed User Activity Feed -->
             <section class="workbench-card" id="admin-telemetry-card">
                 <!-- Data populated dynamically upon logging in as root -->
             </section>
