@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BZaudio // Curator Core Control</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-workspace { max-width: 1200px; margin: 40px auto; padding: 20px; font-family: 'Courier New', monospace; }
+        .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+        .control-panel { background: rgba(20, 18, 17, 0.95); border: 1px solid var(--accent-orange); padding: 25px; border-radius: 8px; backdrop-filter: blur(10px); }
+        .danger-zone { border-color: #d9534f; margin-top: 30px; background: rgba(30, 10, 10, 0.4); }
+        textarea.payload-input { width: 100%; height: 160px; background: #000; color: #00FF00; font-family: monospace; padding: 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .admin-table th, .admin-table td { padding: 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); color: #FFF; font-size: 0.85rem; }
+        .admin-table th { color: var(--accent-orange); }
+        .status-badge { background: #E56A25; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 0.7rem; }
+    </style>
+</head>
+<body style="background: #0c0a09; color: #D4CDCD; display: block; overflow-y: auto;">
+    <div class="admin-workspace">
+        <header style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
+            <div>
+                <h1 style="font-size: 1.4rem; color: #FFF;">CURATOR_CORE_CONTROL_CENTER</h1>
+                <p style="color: #8E8782; font-size: 0.8rem;">Authenticated Admin: <strong>benrz101</strong></p>
+            </div>
+            <a href="index.html" class="engine-btn" style="width: auto; padding: 8px 15px; text-decoration: none;">[DISCONNECT]</a>
+        </header>
+
+        <div class="admin-grid">
+            <!-- Ingestion Terminal -->
+            <div class="control-panel">
+                <h3>Authorize Incoming Ratios</h3>
+                <p style="color: #8E8782; font-size: 0.75rem; margin-bottom: 15px;">Paste the user transaction payload array packet to staging memory matrix below.</p>
+                <textarea class="payload-input" id="rawInput" placeholder="Paste JSON transaction profile block..."></textarea>
+                <button onclick="processPayload()" class="engine-btn" style="border-color: #4CAF50; color: #4CAF50; margin-top: 15px;">[INJECT_TO_REGISTRY_VIEW]</button>
+            </div>
+
+            <!-- Active Records Ledger -->
+            <div class="control-panel">
+                <h3>Active Marketplace Floor Exhibits</h3>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>EXCHANGE PARAMETERS</th>
+                            <th>ARTIST</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody">
+                        <tr>
+                            <td>EXP-001</td>
+                            <td>Acoustic Space Simulator (Score: 142)</td>
+                            <td>BZaudio</td>
+                            <td><span class="status-badge">LIVE ON FLOOR</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Danger Zone Panel Matrix -->
+        <div class="control-panel danger-zone">
+            <h3 style="color: #d9534f;">SYSTEM_CRITICAL_DANGER_ZONE</h3>
+            <p style="color: #8E8782; font-size: 0.75rem; margin-bottom: 15px;">Wiping configuration registers forces immediate operational canvas session termination.</p>
+            <button onclick="purgeRegistry()" class="engine-btn" style="border-color: #d9534f; color: #d9534f; width: auto; padding: 10px 20px;">[PURGE_ALL_ACTIVE_FLOOR_TRADES]</button>
+        </div>
+    </div>
+
+    <script>
+        function processPayload() {
+            try {
+                const data = JSON.parse(document.getElementById('rawInput').value);
+                if(!data.transactionId || !data.offeredAssets || !data.soughtAssets) throw new Error("Faulty Mapping");
+                
+                const tbody = document.getElementById('adminTableBody');
+                tbody.innerHTML += `<tr>
+                    <td><strong>${data.transactionId}</strong></td>
+                    <td>Giving [${data.givingCount}] for [${data.seekingCount}]<br><small style="color:#8E8782;">Offers: ${data.offeredAssets.join(', ')}</small></td>
+                    <td>${data.artist}</td>
+                    <td><span class="status-badge" style="background:#4CAF50;">STAGED PREVIEW</span></td>
+                </tr>`;
+                alert("Payload safely structured in layout view cache.");
+                document.getElementById('rawInput').value = "";
+            } catch(e) {
+                alert("INGESTION FAULT: Packet template does not match Bplugins schema matrix notation.");
+            }
+        }
+
+        function purgeRegistry() {
+            if(confirm("Are you sure you want to drop all active layout session registrations?")) {
+                document.getElementById('adminTableBody').innerHTML = '<tr><td colspan="4" style="text-align:center; color:#d9534f;">MATRIX LEDGER CONTEXT PURGED</td></tr>';
+            }
+        }
+    </script>
+</body>
+</html>
