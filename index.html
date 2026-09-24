@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANALOG // IMPASTO ENGINE</title>
+    <title>BPLUGINS // ARTISAN GENERATION CORE</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <!-- OVERLAY UTILITY HEADER NAVIGATION -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-brand" id="nav-logo">ANALOG // IMPASTO</a>
+            <a href="#" class="nav-brand" id="nav-logo">BPLUGINS // MATRIX</a>
             <ul class="nav-links">
                 <li><a href="#" class="active" id="nav-home">HOME</a></li>
                 <li><a href="#" id="nav-shop">SHOP</a></li>
@@ -21,7 +21,7 @@
         </div>
     </nav>
 
-    <!-- THE LIVING MEADOW ENVIRONMENT FRAME -->
+    <!-- THE LIVING VAN GOGH ENVIRONMENT CANVAS -->
     <main class="living-meadow-frame">
 
         <!-- LAYER A: 10-QUESTION STYLE ONBOARDING MATRIX -->
@@ -43,33 +43,31 @@
         </section>
 
 
-        <!-- LAYER B: THE FULL DUAL-GENERATION USER WORKBENCH (Hidden initially) -->
+        <!-- LAYER B: THE LIVING USER WORKBENCH ENGINE (Revealed after onboarding/login) -->
         <div class="dual-engine-workbench hidden" id="user-workbench-view">
-            <!-- Left Panel: Preset Baker -->
-            <section class="workbench-card">
+            
+            <!-- Left Console Panel: Promp Input Forge Engine -->
+            <section class="workbench-card" id="prompt-generator-card">
                 <div class="card-header">
-                    <span class="tech-id">SYSTEM_MOD // 01</span>
-                    <h2>PRESET_BAKER</h2>
-                    <p>Compile custom DSP architecture adjustments into standalone, installable formats ready for your DAW.</p>
+                    <span class="tech-id">GENERATION_CORE // 01</span>
+                    <h2>ARTIST_INPUT_FORGE</h2>
+                    <p>Describe exactly what you want your software plugin or sample session to sound like in your own words.</p>
                 </div>
+
                 <div class="control-matrix">
                     <div class="control-row">
-                        <label>TARGET_EXPORT_FORMAT //</label>
-                        <select class="palette-dropdown" id="plugin-format">
-                            <option value="vst3">VST3_64BIT_BINARY</option>
-                            <option value="au">AUDIO_UNIT_COMPONENT</option>
-                            <option value="aax">AAX_PRO_TOOLS_NATIVE</option>
-                        </select>
-                    </div>
-                    <div class="control-row">
-                        <label>ANALOG_WARMTH_DB //</label>
-                        <input type="range" min="0" max="100" value="70" class="palette-slider">
+                        <label>NATURAL_LANGUAGE_PROMPT_INPUT //</label>
+                        <!-- THE ARTIST STYLE PROMPT SEARCH BAR -->
+                        <div class="search-bar-wrapper">
+                            <input type="text" id="artist-search-bar" placeholder="e.g., wide sweeping ambient tape delay for moody guitar..." autocomplete="off">
+                        </div>
                     </div>
                 </div>
-                <button class="forge-trigger-btn" id="bake-preset-btn">[BAKE_STANDALONE_PLUGIN]</button>
+
+                <button class="forge-trigger-btn" id="generate-search-btn" style="background-color: #3A3025; color: #FFF;">[ENGAGE_AI_STYLE_GENERATION]</button>
             </section>
 
-            <!-- Center Axis: Spinning Record Platter -->
+            <!-- Center Axis: Spinning Van Gogh Vinyl Platter -->
             <section class="rotating-vinyl-axis">
                 <div class="vinyl-platter-disc">
                     <div class="painted-center-spindle">
@@ -77,36 +75,44 @@
                     </div>
                 </div>
                 <div class="vinyl-metadata-overlay">
-                    <h1 id="engine-status-text">CALIBRATED_READY</h1>
-                    <p id="profile-dna-tag">[ PROFILE // AMBIENT_CORE ]</p>
+                    <h1 id="engine-status-text">ENGINE_READY</h1>
+                    <p id="profile-dna-tag">[ PROMPT_INPUT_STANDBY ]</p>
                 </div>
             </section>
 
-            <!-- Right Panel: Space Decay & Layer Stacker -->
-            <section class="workbench-card">
+            <!-- Right Console Panel: Interactive Custom Variable Sandbox (Dynamic Output) -->
+            <section class="workbench-card" id="generated-controls-card">
                 <div class="card-header">
-                    <span class="tech-id">SYSTEM_MOD // 02</span>
-                    <h2>SAMPLE_ARCHITECT</h2>
-                    <p>Synthesize atmospheric environments and custom multi-track structures.</p>
+                    <span class="tech-id">GENERATION_CORE // 02</span>
+                    <h2>INTELLIGENT_SANDBOX</h2>
+                    <p id="sandbox-guidance-text">Enter style parameters on the left search track to unpack tactile plugin functions here.</p>
                 </div>
-                <div class="control-matrix">
+
+                <!-- Interactive Functions Area (Populated dynamically on generation matching) -->
+                <div class="control-matrix hidden" id="dynamic-knob-matrix">
                     <div class="control-row">
-                        <label>SPACE_DECAY_SIMULATOR //</label>
+                        <label id="slider-label-1">ANALOG_WARMTH_DB //</label>
                         <div class="slider-readout-row">
-                            <input type="range" min="0" max="100" value="85" class="palette-slider" id="decay-slider">
-                            <span class="tech-val" id="decay-val">8.5s</span>
+                            <input type="range" min="0" max="100" value="70" class="palette-slider" id="dynamic-slider-1">
+                            <span class="tech-val" id="dynamic-val-1">7.0dB</span>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <label id="slider-label-2">SPACE_DECAY_SIZE //</label>
+                        <div class="slider-readout-row">
+                            <input type="range" min="0" max="100" value="85" class="palette-slider" id="dynamic-slider-2">
+                            <span class="tech-val" id="dynamic-val-2">8.5s</span>
                         </div>
                     </div>
                     <div class="control-row">
                         <label>SAMPLE_LAYER_STACKER //</label>
-                        <div class="stacker-drop-zone" id="stacker-zone">
-                            <div class="stacked-layer-item">⚡ STRAT_AMBIENT_STEM.wav <span class="remove-layer">×</span></div>
-                            <div class="stacked-layer-item">🎹 CATHEDRAL_PAD_SUSTAIN.wav <span class="remove-layer">×</span></div>
-                            <div class="drop-placeholder">+ Drop additional stem layer here...</div>
+                        <div class="stacker-drop-zone">
+                            <div class="stacked-layer-item" id="gen-stem-label">⚡ COMPILING_TARGET_STEM.wav</div>
                         </div>
                     </div>
                 </div>
-                <button class="forge-trigger-btn" id="build-samples-btn">[BUILD_STEM_SESSION]</button>
+
+                <button class="forge-trigger-btn" id="download-package-btn" disabled>[ASSET_COMPILATION_REQUIRED]</button>
             </section>
         </div>
 
@@ -163,19 +169,9 @@
                 </div>
             </section>
 
-            <!-- Right Console: Shop Inventory Logs -->
-            <section class="workbench-card">
-                <div class="card-header">
-                    <span class="tech-id">ADMIN_PANEL // 02</span>
-                    <h2>INVENTORY_&_SALES_LOGS</h2>
-                    <p>Track generation parameters, add or drop product items from the shop, and read licensing compliance streams.</p>
-                </div>
-                <div class="control-matrix" style="font-size: 0.65rem; line-height: 1.6;">
-                    <div style="color: #FFF;">• LIC_KEY_GEN: ACTIVE (100% PASS)</div>
-                    <div>• TOTAL_DOWNLOAD_VOLUME: 1,402 KITS</div>
-                    <div>• FINANCIALS_CHECK: VERIFIED</div>
-                </div>
-                <button class="forge-trigger-btn" id="logout-admin-btn">[DISENGAGE_ADMIN_SUBDOMAIN]</button>
+            <!-- Right Console Panel: Managed User Activity Feed (Populated by JS Engine) -->
+            <section class="workbench-card" id="admin-telemetry-card">
+                <!-- Data populated dynamically upon logging in as root -->
             </section>
         </div>
 
