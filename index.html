@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANALOG // IMPASTO ENGINE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- OVERLAY UTILITY HEADER NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-brand" id="nav-logo">ANALOG // IMPASTO</a>
+            <ul class="nav-links">
+                <li><a href="#" class="active" id="nav-home">HOME</a></li>
+                <li><a href="#" id="nav-shop">SHOP</a></li>
+                <li><a href="#" id="nav-about">ABOUT US</a></li>
+                <li><a href="#" id="nav-contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- THE LIVING MEADOW ENVIRONMENT FRAME -->
+    <main class="living-meadow-frame">
+
+        <!-- LAYER A: 10-QUESTION STYLE ONBOARDING MATRIX -->
+        <section class="artisan-modal-box" id="onboarding-quiz-card">
+            <div class="portal-header">
+                <span class="lock-glyph">✺</span>
+                <h2>SONIC_DNA_ONBOARDING</h2>
+                <p id="quiz-progress-text">QUESTION // 01 OF 10</p>
+            </div>
+            
+            <div class="quiz-question-container">
+                <h3 id="current-question-text">What is the primary frequency range of your signature instrument layer?</h3>
+                <div class="quiz-options-vertical" id="quiz-options-wrapper">
+                    <!-- Options injected dynamically by JS engine -->
+                </div>
+            </div>
+            
+            <button class="forge-trigger-btn" id="next-question-btn" disabled>[CONFIRM_PARAMETER_SELECTION]</button>
+        </section>
+
+
+        <!-- LAYER B: THE FULL DUAL-GENERATION USER WORKBENCH (Hidden initially) -->
+        <div class="dual-engine-workbench hidden" id="user-workbench-view">
+            <!-- Left Panel: Preset Baker -->
+            <section class="workbench-card">
+                <div class="card-header">
+                    <span class="tech-id">SYSTEM_MOD // 01</span>
+                    <h2>PRESET_BAKER</h2>
+                    <p>Compile custom DSP architecture adjustments into standalone, installable formats ready for your DAW.</p>
+                </div>
+                <div class="control-matrix">
+                    <div class="control-row">
+                        <label>TARGET_EXPORT_FORMAT //</label>
+                        <select class="palette-dropdown" id="plugin-format">
+                            <option value="vst3">VST3_64BIT_BINARY</option>
+                            <option value="au">AUDIO_UNIT_COMPONENT</option>
+                            <option value="aax">AAX_PRO_TOOLS_NATIVE</option>
+                        </select>
+                    </div>
+                    <div class="control-row">
+                        <label>ANALOG_WARMTH_DB //</label>
+                        <input type="range" min="0" max="100" value="70" class="palette-slider">
+                    </div>
+                </div>
+                <button class="forge-trigger-btn" id="bake-preset-btn">[BAKE_STANDALONE_PLUGIN]</button>
+            </section>
+
+            <!-- Center Axis: Spinning Record Platter -->
+            <section class="rotating-vinyl-axis">
+                <div class="vinyl-platter-disc">
+                    <div class="painted-center-spindle">
+                        <span class="spindle-notch">✺</span>
+                    </div>
+                </div>
+                <div class="vinyl-metadata-overlay">
+                    <h1 id="engine-status-text">CALIBRATED_READY</h1>
+                    <p id="profile-dna-tag">[ PROFILE // AMBIENT_CORE ]</p>
+                </div>
+            </section>
+
+            <!-- Right Panel: Space Decay & Layer Stacker -->
+            <section class="workbench-card">
+                <div class="card-header">
+                    <span class="tech-id">SYSTEM_MOD // 02</span>
+                    <h2>SAMPLE_ARCHITECT</h2>
+                    <p>Synthesize atmospheric environments and custom multi-track structures.</p>
+                </div>
+                <div class="control-matrix">
+                    <div class="control-row">
+                        <label>SPACE_DECAY_SIMULATOR //</label>
+                        <div class="slider-readout-row">
+                            <input type="range" min="0" max="100" value="85" class="palette-slider" id="decay-slider">
+                            <span class="tech-val" id="decay-val">8.5s</span>
+                        </div>
+                    </div>
+                    <div class="control-row">
+                        <label>SAMPLE_LAYER_STACKER //</label>
+                        <div class="stacker-drop-zone" id="stacker-zone">
+                            <div class="stacked-layer-item">⚡ STRAT_AMBIENT_STEM.wav <span class="remove-layer">×</span></div>
+                            <div class="stacked-layer-item">🎹 CATHEDRAL_PAD_SUSTAIN.wav <span class="remove-layer">×</span></div>
+                            <div class="drop-placeholder">+ Drop additional stem layer here...</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="forge-trigger-btn" id="build-samples-btn">[BUILD_STEM_SESSION]</button>
+            </section>
+        </div>
+
+
+        <!-- LAYER C: THE HIDDEN ADMIN OVERRIDE LOGIN TERMINAL -->
+        <section class="artisan-modal-box hidden" id="admin-login-card">
+            <div class="portal-header">
+                <span class="lock-glyph">🔒</span>
+                <h2>ADMIN_OVERRIDE_TERMINAL</h2>
+                <p>Provide secure authorization clearance keys to access backend configurations.</p>
+            </div>
+            <form class="portal-form" id="admin-auth-form">
+                <div class="input-element-row">
+                    <label>SYS_ADMIN_ID //</label>
+                    <input type="text" id="admin-username" placeholder="Enter root identifier..." required autocomplete="off">
+                </div>
+                <div class="input-element-row">
+                    <label>CRYPTOGRAPHIC_KEY //</label>
+                    <input type="password" id="admin-password" placeholder="••••••••••••" required>
+                </div>
+                <button type="submit" class="submit-access-btn">[ENGAGE_CONSOLE_OVERRIDE]</button>
+            </form>
+        </section>
+
+
+        <!-- LAYER D: SECURE ADMINISTRATIVE CONTROL SUITE -->
+        <div class="dual-engine-workbench hidden" id="admin-dashboard-view">
+            <!-- Left Console: Algorithm Editor -->
+            <section class="workbench-card">
+                <div class="card-header">
+                    <span class="tech-id">ADMIN_PANEL // 01</span>
+                    <h2>ALGORITHM_CALIBRATION</h2>
+                    <p>Modify onboarding style calculations, question parameter maps, and baseline hardware modeling values.</p>
+                </div>
+                <div class="control-matrix">
+                    <div class="control-row">
+                        <label>DSP_TUBE_BIAS_RATIO //</label>
+                        <input type="range" min="0" max="100" value="82" class="palette-slider">
+                    </div>
+                </div>
+                <button class="forge-trigger-btn" style="background-color: #5C4D3C;">[PUSH_ALGORITHM_UPDATE]</button>
+            </section>
+
+            <!-- Spindle Core Backup Readout -->
+            <section class="rotating-vinyl-axis">
+                <div class="vinyl-platter-disc">
+                    <div class="painted-center-spindle" style="border-color: #ff3b30;">
+                        <span class="spindle-notch" style="color: #ff3b30;">⚙</span>
+                    </div>
+                </div>
+                <div class="vinyl-metadata-overlay" style="border-color: #ff3b30;">
+                    <h1 style="color: #ff3b30;">ROOT_OVERRIDE</h1>
+                    <p>[ SUBDOMAIN // ADMIN_MAIN ]</p>
+                </div>
+            </section>
+
+            <!-- Right Console: Shop Inventory Logs -->
+            <section class="workbench-card">
+                <div class="card-header">
+                    <span class="tech-id">ADMIN_PANEL // 02</span>
+                    <h2>INVENTORY_&_SALES_LOGS</h2>
+                    <p>Track generation parameters, add or drop product items from the shop, and read licensing compliance streams.</p>
+                </div>
+                <div class="control-matrix" style="font-size: 0.65rem; line-height: 1.6;">
+                    <div style="color: #FFF;">• LIC_KEY_GEN: ACTIVE (100% PASS)</div>
+                    <div>• TOTAL_DOWNLOAD_VOLUME: 1,402 KITS</div>
+                    <div>• FINANCIALS_CHECK: VERIFIED</div>
+                </div>
+                <button class="forge-trigger-btn" id="logout-admin-btn">[DISENGAGE_ADMIN_SUBDOMAIN]</button>
+            </section>
+        </div>
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
