@@ -1,5 +1,5 @@
 /* ==========================================================================
-   IMPASTO PLATFORM CORE // AUTOMATION & SECURE MACRO MATRIX
+   BPLUGINS ENGINE // PART 1: EVALUATION MATRIX & SYSTEM AUTHENTICATION
    ========================================================================== */
 
 const quizQuestions = [
@@ -18,6 +18,13 @@ const quizQuestions = [
 let currentQuestionIndex = 0;
 let userProfileArchetype = "AMBIENT_CORE";
 
+// Live server visitor monitoring logs parsed into root dashboard panels
+const activeVisitorLogs = [
+    { ip: "172.56.21.94", profile: "WORSHIP_ARTS_BRIGHT", action: "FORGED_DSP_VST3" },
+    { ip: "198.24.142.12", profile: "CINEMATIC_DARK_OBSIDIAN", action: "DOWNLOADED_STEMS" },
+    { ip: "64.233.160.8", profile: "INDUSTRIAL_LOFI", action: "SEARCH_FORGE_RUN" }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const quizCard = document.getElementById('onboarding-quiz-card');
     const userWorkbench = document.getElementById('user-workbench-view');
@@ -28,16 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const questionText = document.getElementById('current-question-text');
     const optionsWrapper = document.getElementById('quiz-options-wrapper');
     const nextQuizBtn = document.getElementById('next-question-btn');
-    
     const statusText = document.getElementById('engine-status-text');
     const dnaTag = document.getElementById('profile-dna-tag');
-    const decaySlider = document.getElementById('decay-slider');
-    const decayVal = document.getElementById('decay-val');
-    const stackerZone = document.getElementById('stacker-zone');
 
     const heldKeys = { shift: false, a: false, d: false };
 
+    // Initialize Onboarding Evaluation Steps
     function loadQuizQuestion() {
+        if (!quizCard) return;
         if (currentQuestionIndex >= quizQuestions.length) {
             compileProfileResults();
             return;
@@ -75,48 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function compileProfileResults() {
         quizCard.classList.add('hidden');
         userWorkbench.classList.remove('hidden');
-        if (dnaTag) dnaTag.innerText = `[ PROFILE // ${userProfileArchetype} ]`;
+        if (dnaTag) dnaTag.innerText = `[ ENGINE_CORE // STANDBY ]`;
     }
 
     loadQuizQuestion();
 
-    if (decaySlider) {
-        decaySlider.addEventListener('input', (e) => {
-            decayVal.innerText = `${(e.target.value / 10).toFixed(1)}s`;
-        });
-    }
-
-    if (stackerZone) {
-        stackerZone.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-layer')) {
-                e.target.parentElement.remove();
-            }
-        });
-    }
-
-    document.getElementById('bake-preset-btn')?.addEventListener('click', function() {
-        const fmt = document.getElementById('plugin-format').value.toUpperCase();
-        statusText.innerText = "BAKING_CORE...";
-        this.innerText = `[COMPILING_BINARY_${fmt}...]`;
-        this.disabled = true;
-        setTimeout(() => {
-            statusText.innerText = "PLUGIN_BAKED";
-            this.innerText = `[DOWNLOAD_${fmt}_PLUGIN]`;
-            this.disabled = false;
-        }, 3000);
-    });
-
-    document.getElementById('build-samples-btn')?.addEventListener('click', function() {
-        statusText.innerText = "STITCHING_DNA...";
-        this.innerText = "[RENDERING_STEMS...]";
-        this.disabled = true;
-        setTimeout(() => {
-            statusText.innerText = "SESSION_READY";
-            this.innerText = "[DOWNLOAD_STEM_SESSION]";
-            this.disabled = false;
-        }, 3500);
-    });
-
+    // Secure Hidden Override Macro (Shift + A + D)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Shift') heldKeys.shift = true;
         if (e.key.toLowerCase() === 'a') heldKeys.a = true;
@@ -137,15 +106,135 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key.toLowerCase() === 'd') heldKeys.d = false;
     });
 
+    // Admin Clearance Verification (477643)
     document.getElementById('admin-auth-form')?.addEventListener('submit', (e) => {
         e.preventDefault();
-        adminLoginCard.classList.add('hidden');
-        adminDashboard.className = "dual-engine-workbench";
+        const inputPass = document.getElementById('admin-password').value;
+
+        if (inputPass === "477643") {
+            adminLoginCard.classList.add('hidden');
+            adminDashboard.classList.remove('hidden');
+            window.initializeAdminTelemetryFeed(); // Invokes rendering loop from Part 2
+        } else {
+            alert("SECURITY ALERT // INCORRECT GATEWAY CLEARANCE PASS.");
+            document.getElementById('admin-password').value = '';
+        }
+    });
+/* ==========================================================================
+   BPLUGINS ENGINE // PART 2: PROMPT PROCESSING & DYNAMIC KNOB MATRICES
+   ========================================================================== */
+
+    // Search Component Selection Targets
+    const searchBar = document.getElementById('artist-search-bar');
+    const generateSearchBtn = document.getElementById('generate-search-btn');
+    const generatedControlsCard = document.getElementById('generated-controls-card');
+    const dynamicKnobMatrix = document.getElementById('dynamic-knob-matrix');
+    const sandboxGuidanceText = document.getElementById('sandbox-guidance-text');
+    const downloadPackageBtn = document.getElementById('download-package-btn');
+    
+    const label1 = document.getElementById('slider-label-1');
+    const label2 = document.getElementById('slider-label-2');
+    const slider1 = document.getElementById('dynamic-slider-1');
+    const slider2 = document.getElementById('dynamic-slider-2');
+    const val1 = document.getElementById('dynamic-val-1');
+    const val2 = document.getElementById('dynamic-val-2');
+    const genStemLabel = document.getElementById('gen-stem-label');
+    const statusText = document.getElementById('engine-status-text');
+    const dnaTag = document.getElementById('profile-dna-tag');
+    const adminDashboard = document.getElementById('admin-dashboard-view');
+    const userWorkbench = document.getElementById('user-workbench-view');
+
+    // Real-Time Slider Value Monitors
+    slider1?.addEventListener('input', (e) => { val1.innerText = `${(e.target.value / 10).toFixed(1)}dB`; });
+    slider2?.addEventListener('input', (e) => { val2.innerText = `${(e.target.value / 10).toFixed(1)}s`; });
+
+    // Natural Language Search Optimization Script
+    generateSearchBtn?.addEventListener('click', () => {
+        const queryText = searchBar.value.trim().toLowerCase();
+
+        if (queryText === '') {
+            alert("SYS_ERROR // SEARCH FIELD CANNOT BE EMPTY.");
+            return;
+        }
+
+        statusText.innerText = "PARSING_STYLE...";
+        generateSearchBtn.innerText = "[DECOMPOSING_STYLE_BLUEPRINTS...]";
+        generateSearchBtn.disabled = true;
+
+        setTimeout(() => {
+            sandboxGuidanceText.innerText = "CUSTOM_PLUGIN_COMPILED_SUCCESSFULLY // Interactive variables calibrated to your text prompt variables below:";
+            dynamicKnobMatrix.classList.remove('hidden');
+            generatedControlsCard.classList.add('functionality-reveal-active');
+            
+            // Intelligently configure interactive dials based on search parameters
+            if (queryText.includes("delay") || queryText.includes("reverb") || queryText.includes("space")) {
+                label1.innerText = "FEEDBACK_REGENERATION_PERCENT //";
+                label2.innerText = "SPATIAL_ROOM_DECAY_TIME //";
+                slider1.value = 65; val1.innerText = "65%";
+                slider2.value = 85; val2.innerText = "8.5s";
+                genStemLabel.innerText = "⚡ GENERATED_AMBIENT_REVERB_STEM.wav";
+                dnaTag.innerText = "[ BLUEPRINT // TIME_BASED_DSP ]";
+            } else if (queryText.includes("warm") || queryText.includes("tube") || queryText.includes("distortion") || queryText.includes("saturation")) {
+                label1.innerText = "VALVE_TUBE_DRIVE_GAIN //";
+                label2.innerText = "EVEN_ORDER_HARMONIC_MIX //";
+                slider1.value = 75; val1.innerText = "7.5dB";
+                slider2.value = 45; val2.innerText = "45%";
+                genStemLabel.innerText = "⚡ GENERATED_SATURATED_TAPE_ROOM.wav";
+                dnaTag.innerText = "[ BLUEPRINT // HARMONIC_FORGE ]";
+            } else {
+                label1.innerText = "COMPRESSION_THRESHOLD //";
+                label2.innerText = "MAKEUP_OUTPUT_GAIN //";
+                slider1.value = 40; val1.innerText = "-4.0dB";
+                slider2.value = 20; val2.innerText = "+2.0dB";
+                genStemLabel.innerText = "⚡ GENERATED_BALANCED_MIX_STEM.wav";
+                dnaTag.innerText = "[ BLUEPRINT // CUSTOM_DYNAMIC_FX ]";
+            }
+
+            statusText.innerText = "PRINT_SUCCESS";
+            downloadPackageBtn.innerText = "[DOWNLOAD_CUSTOM_PLUGIN_&_STEMS]";
+            downloadPackageBtn.disabled = false;
+            generateSearchBtn.innerText = "[ENGAGE_AI_STYLE_GENERATION]";
+            generateSearchBtn.disabled = false;
+        }, 2800);
     });
 
-    document.getElementById('logout-admin-btn')?.addEventListener('click', () => {
-        adminDashboard.className = "dual-engine-workbench hidden";
-        userWorkbench.classList.remove('hidden');
-        statusText.innerText = "CALIBRATED_READY";
+    downloadPackageBtn?.addEventListener('click', () => {
+        statusText.innerText = "ASSET_EXPORTED";
+        alert("SYS_SUCCESS // Custom plugin binary block (.vst3) and matching multi-track stem packet zipped successfully.");
     });
+
+    // Global Admin Telemetry Tracker Stream Logger
+    window.initializeAdminTelemetryFeed = function() {
+        const telemetryPanel = document.getElementById('admin-telemetry-card');
+        if (!telemetryPanel) return;
+
+        let htmlFeed = `
+            <div class="card-header">
+                <span class="tech-id">LIVE_TELEMETRY // FEED_ACTIVE</span>
+                <h2>ACTIVE_VISITOR_MONITOR</h2>
+                <p>Real-time telemetry stream parsing tracking current users processing assets on the workbench matrix.</p>
+            </div>
+            <div class="control-matrix" style="font-size: 0.65rem; line-height: 1.6; max-height: 180px; overflow-y: auto; margin-bottom: 25px;">
+        `;
+
+        activeVisitorLogs.forEach(user => {
+            htmlFeed += `
+                <div style="border-bottom: 1px dashed rgba(210,201,189,0.1); padding: 5px 0;">
+                    <span style="color: #FFF;">👤 ADDR: ${user.ip}</span><br>
+                    <span>↳ TYPE: ${user.profile} | ACTION: <span style="color: #FFFFFF;">${user.action}</span></span>
+                </div>
+            `;
+        });
+
+        htmlFeed += `</div><button class="forge-trigger-btn" id="logout-admin-btn" style="background-color: #ff3b30; color: #FFF; border-color: #FFF;">[DISENGAGE_ADMIN_SUBDOMAIN]</button>`;
+        
+        telemetryPanel.innerHTML = htmlFeed;
+
+        document.getElementById('logout-admin-btn')?.addEventListener('click', () => {
+            adminDashboard.classList.add('hidden');
+            userWorkbench.classList.remove('hidden');
+            statusText.innerText = "ENGINE_READY";
+            dnaTag.innerText = "[ PROMPT_INPUT_STANDBY ]";
+        });
+    };
 });
