@@ -1,5 +1,5 @@
 /* ==========================================================================
-   BPLUGINS ENGINE // PART 1: EVALUATION MATRIX & SYSTEM AUTHENTICATION
+   BZAUDIO ENGINE // MOUNTED SYSTEM AUTOMATION SCRIPT LAYERS
    ========================================================================== */
 
 const quizQuestions = [
@@ -18,7 +18,6 @@ const quizQuestions = [
 let currentQuestionIndex = 0;
 let userProfileArchetype = "AMBIENT_CORE";
 
-// Admin monitor logs tracking user data streams
 const activeVisitorLogs = [
     { ip: "172.56.21.94", profile: "WORSHIP_ARTS_BRIGHT", action: "DEPOSITED_TUBE_SAT" },
     { ip: "198.24.142.12", profile: "CINEMATIC_DARK_OBSIDIAN", action: "CLAIMED_SPACE_REVERB" },
@@ -38,9 +37,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusText = document.getElementById('engine-status-text');
     const dnaTag = document.getElementById('profile-dna-tag');
 
+    const tradeInput = document.getElementById('artist-search-bar');
+    const postTradeBtn = document.getElementById('generate-search-btn');
+    const swapListWrapper = document.getElementById('swap-list-wrapper');
+    const claimPackageBtn = document.getElementById('download-package-btn');
+
     const heldKeys = { shift: false, a: false, d: false };
 
-    // Initialize Onboarding Evaluation Steps
     function loadQuizQuestion() {
         if (!quizCard) return;
         if (currentQuestionIndex >= quizQuestions.length) {
@@ -48,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        nextQuizBtn.disabled = true;
+        if (nextQuizBtn) nextQuizBtn.disabled = true;
         progressText.innerText = `QUESTION // ${(currentQuestionIndex + 1).toString().padStart(2, '0')} OF 10`;
         questionText.innerText = quizQuestions[currentQuestionIndex].q;
         optionsWrapper.innerHTML = '';
@@ -60,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             div.addEventListener('click', () => {
                 document.querySelectorAll('.quiz-option-row').forEach(r => r.classList.remove('selected-option'));
                 div.classList.add('selected-option');
-                nextQuizBtn.disabled = false;
+                if (nextQuizBtn) nextQuizBtn.disabled = false;
             });
             optionsWrapper.appendChild(div);
         });
@@ -68,9 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (nextQuizBtn) {
         nextQuizBtn.addEventListener('click', () => {
-            const selected = document.querySelector('.selected-option').innerText;
-            if (currentQuestionIndex === 9 && selected.includes("DARK")) userProfileArchetype = "DARK_OBSIDIAN";
-            if (currentQuestionIndex === 9 && selected.includes("BRIGHT")) userProfileArchetype = "CINEMATIC_WORSHIP";
+            const selectedOpt = document.querySelector('.selected-option');
+            if (!selectedOpt) return;
             
             currentQuestionIndex++;
             loadQuizQuestion();
@@ -78,24 +80,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function compileProfileResults() {
-        quizCard.classList.add('hidden');
-        userWorkbench.classList.remove('hidden');
+        quizCard?.classList.add('hidden');
+        userWorkbench?.classList.remove('hidden');
         if (dnaTag) dnaTag.innerText = `[ HUB // OPEN_MARKET ]`;
     }
 
     loadQuizQuestion();
 
-    // Secure Hidden Override Macro Shortcut Detection (Shift + A + D)
+    postTradeBtn?.addEventListener('click', () => {
+        const assetName = tradeInput.value.trim();
+        if (assetName === '') return;
+
+        if (statusText) statusText.innerText = "POSTING_ASSET...";
+        postTradeBtn.innerText = "[PROCESSING...]";
+        postTradeBtn.disabled = true;
+
+        setTimeout(() => {
+            const newListing = document.createElement('div');
+            newListing.className = 'stacked-layer-item';
+            newListing.innerHTML = `<span>📦 ${assetName}</span><span class="remove-layer" style="color:#D2C9BD; cursor:pointer;">[CLAIM]</span>`;
+            swapListWrapper?.appendChild(newListing);
+            
+            tradeInput.value = '';
+            if (statusText) statusText.innerText = "SWAP_ACTIVE";
+            postTradeBtn.innerText = "[POST_TO_OPEN_SWAP_BLOCK]";
+            postTradeBtn.disabled = false;
+        }, 1200);
+    });
+
+    swapListWrapper?.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-layer')) {
+            const targetRow = e.target.parentElement;
+            const targetName = targetRow.querySelector('span').innerText;
+            
+            document.querySelectorAll('.stacked-layer-item').forEach(row => row.style.borderColor = 'rgba(210, 201, 189, 0.15)');
+            targetRow.style.borderColor = '#D2C9BD';
+            
+            if (claimPackageBtn) {
+                claimPackageBtn.innerText = `[DOWNLOAD_${targetName.replace('📦 ', '').toUpperCase().replace(/ /g, '_')}]`;
+                claimPackageBtn.disabled = false;
+                claimPackageBtn.style.backgroundColor = '#3A3025';
+                claimPackageBtn.style.color = '#FFFFFF';
+            }
+        }
+    });
+
+    claimPackageBtn?.addEventListener('click', () => {
+        if (statusText) statusText.innerText = "ASSET_CLAIMED";
+        alert("DOWNLOAD_SUCCESS // Community digital asset unzipped safely to your DAW folder.");
+        claimPackageBtn.disabled = true;
+        claimPackageBtn.innerText = "[SELECT_A_LISTING_ABOVE]";
+        claimPackageBtn.style.backgroundColor = 'transparent';
+        claimPackageBtn.style.color = '#8C8275';
+    });
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Shift') heldKeys.shift = true;
         if (e.key.toLowerCase() === 'a') heldKeys.a = true;
         if (e.key.toLowerCase() === 'd') heldKeys.d = true;
 
         if (heldKeys.shift && heldKeys.a && heldKeys.d) {
-            quizCard.classList.add('hidden');
-            userWorkbench.classList.add('hidden');
-            adminDashboard.classList.add('hidden');
-            adminLoginCard.classList.remove('hidden');
+            quizCard?.classList.add('hidden');
+            userWorkbench?.classList.add('hidden');
+            adminDashboard?.classList.add('hidden');
+            adminLoginCard?.classList.remove('hidden');
             if (statusText) statusText.innerText = "OVERRIDE_LOCK";
         }
     });
@@ -106,126 +154,38 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key.toLowerCase() === 'd') heldKeys.d = false;
     });
 
-    // Admin Clearance Code Matching Verification (477643)
     document.getElementById('admin-auth-form')?.addEventListener('submit', (e) => {
         e.preventDefault();
         const inputPass = document.getElementById('admin-password').value;
 
         if (inputPass === "477643") {
-            adminLoginCard.classList.add('hidden');
-            adminDashboard.classList.remove('hidden');
-            window.initializeAdminSwapLogs(); // Triggers display rendering script from Part 2
-            console.log("Root authority verified. Subdomain console active.");
+            adminLoginCard?.classList.add('hidden');
+            adminDashboard?.classList.remove('hidden');
+            renderAdminSwapLogs();
         } else {
-            alert("SECURITY ALERT // INCORRECT KEY SPECIFIED.");
+            alert("SECURITY ALERT // INCORRECT SYSTEM ACCESS KEY.");
             document.getElementById('admin-password').value = '';
         }
     });
-/* ==========================================================================
-   BPLUGINS ENGINE // PART 2: THE COMMUNITY TRADING BLOCK MECHANICS
-   ========================================================================== */
 
-    // Swap Component Selection Targets
-    const tradeInput = document.getElementById('artist-search-bar');
-    const postTradeBtn = document.getElementById('generate-search-btn');
-    const swapListWrapper = document.getElementById('swap-list-wrapper');
-    const claimPackageBtn = document.getElementById('download-package-btn');
-    const statusText = document.getElementById('engine-status-text');
-    const dnaTag = document.getElementById('profile-dna-tag');
-    const adminDashboard = document.getElementById('admin-dashboard-view');
-    const userWorkbench = document.getElementById('user-workbench-view');
-
-    // Interactive Swap Function: Depositing Custom Plugins Natively
-    postTradeBtn?.addEventListener('click', () => {
-        const assetName = tradeInput.value.trim();
-
-        if (assetName === '') {
-            alert("SYS_ERROR // REQUISITION TITLE CORES CANNOT BE EMPTY.");
-            return;
-        }
-
-        statusText.innerText = "POSTING_ASSET...";
-        postTradeBtn.innerText = "[ENCRYPTING_FILE_PACKETS...]";
-        postTradeBtn.disabled = true;
-
-        setTimeout(() => {
-            // Append a new item listing row dynamically straight onto the live queue block
-            const newListing = document.createElement('div');
-            newListing.className = 'stacked-layer-item';
-            newListing.innerHTML = `
-                <span>📦 ${assetName}</span>
-                <span class="remove-layer" style="color:#D2C9BD; cursor:pointer;">[CLAIM]</span>
-            `;
-            
-            swapListWrapper.appendChild(newListing);
-            
-            // Re-calibrate input states back to default
-            tradeInput.value = '';
-            statusText.innerText = "SWAP_ACTIVE";
-            postTradeBtn.innerText = "[POST_TO_OPEN_SWAP_BLOCK]";
-            postTradeBtn.disabled = false;
-            
-            alert(`SUCCESS // Your custom asset "${assetName}" has been posted to the open BZAUDIO Swap block.`);
-        }, 2000);
-    });
-
-    // Selecting and Highlighting listings to Claim
-    swapListWrapper?.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-layer')) {
-            const targetRow = e.target.parentElement;
-            const targetName = targetRow.querySelector('span').innerText;
-            
-            document.querySelectorAll('.stacked-layer-item').forEach(row => row.style.borderColor = 'rgba(210, 201, 189, 0.15)');
-            targetRow.style.borderColor = '#D2C9BD';
-            
-            claimPackageBtn.innerText = `[DOWNLOAD_${targetName.replace('📦 ', '').toUpperCase().replace(/ /g, '_')}]`;
-            claimPackageBtn.disabled = false;
-            claimPackageBtn.style.backgroundColor = '#3A3025';
-            claimPackageBtn.style.color = '#FFFFFF';
-        }
-    });
-
-    claimPackageBtn?.addEventListener('click', () => {
-        statusText.innerText = "ASSET_CLAIMED";
-        alert("DOWNLOAD_SUCCESS // Community digital asset verified and downloaded cleanly to your DAW directory path.");
-        claimPackageBtn.disabled = true;
-        claimPackageBtn.innerText = "[SELECT_A_LISTING_ABOVE]";
-        claimPackageBtn.style.backgroundColor = 'transparent';
-        claimPackageBtn.style.color = '#8C8275';
-    });
-
-    // Admin Telemetry Panel Rendering Loop (Called upon correct password authorization)
-    window.initializeAdminSwapLogs = function() {
+    function renderAdminSwapLogs() {
         const telemetryPanel = document.getElementById('admin-telemetry-card');
         if (!telemetryPanel) return;
 
         let htmlFeed = `
-            <div class="card-header">
-                <span class="tech-id">LIVE_TELEMETRY // FEED_ACTIVE</span>
-                <h2>SWAP_BAY_MONITOR</h2>
-                <p>Tracking current community transaction logs, download traffic parameters, and open file deposits.</p>
-            </div>
+            <div class="card-header"><span class="tech-id">LIVE_TELEMETRY // FEED_ACTIVE</span><h2>SWAP_BAY_MONITOR</h2><p>Tracking current community transaction logs.</p></div>
             <div class="control-matrix" style="font-size: 0.65rem; line-height: 1.6; max-height: 180px; overflow-y: auto; margin-bottom: 25px;">
         `;
-
         activeVisitorLogs.forEach(user => {
-            htmlFeed += `
-                <div style="border-bottom: 1px dashed rgba(210,201,189,0.1); padding: 5px 0;">
-                    <span style="color: #FFF;">👤 ADDR: ${user.ip}</span><br>
-                    <span>↳ PROFILE: ${user.profile} | BLOCK_ACTION: <span style="color: #FFFFFF;">${user.action}</span></span>
-                </div>
-            `;
+            htmlFeed += `<div style="border-bottom: 1px dashed rgba(210,201,189,0.1); padding: 5px 0;"><span style="color: #FFF;">👤 ADDR: ${user.ip}</span><br><span>↳ ACTION: <span style="color: #FFFFFF;">${user.action}</span></span></div>`;
         });
-
-        htmlFeed += `</div><button class="forge-trigger-btn" id="logout-admin-btn" style="background-color: #ff3b30; color: #FFF; border-color: #FFF;">[DISENGAGE_ADMIN_SUBDOMAIN]</button>`;
+        htmlFeed += `</div><form_button class="forge-trigger-btn" id="logout-admin-btn" style="background-color: #ff3b30; color: #FFF; border-color: #FFF;">[DISENGAGE_ADMIN]</form_button>`;
         
         telemetryPanel.innerHTML = htmlFeed;
-
         document.getElementById('logout-admin-btn')?.addEventListener('click', () => {
-            adminDashboard.classList.add('hidden');
-            userWorkbench.classList.remove('hidden');
-            statusText.innerText = "SWAP_ACTIVE";
-            dnaTag.innerText = "[ HUB // OPEN_MARKET ]";
+            adminDashboard?.classList.add('hidden');
+            userWorkbench?.classList.remove('hidden');
+            if (statusText) statusText.innerText = "SWAP_ACTIVE";
         });
-    };
+    }
 });
