@@ -1,19 +1,30 @@
-# NEXUS
+# BZ Audio Command Center
 
-NEXUS is a modular digital operating environment. This first implementation establishes a real web service, persistent project/module/event models, a workspace UI, builder surface, automation/AI/infrastructure layers, and a deployable Railway target.
+First working version of the BZ Audio Command Center.
 
-## Run
+## Working now
+- Responsive command-center interface
+- Real PostgreSQL persistence for projects/modules/events
+- Real Allen & Heath SQ MIDI-over-TCP/IP connection
+- SQ connection/disconnection status
+- Raw MIDI test endpoint
+- Input mute control for SQ channels 1-48
+- Scene recall
+- Audio Doctor starter workflow
+- Show Mode and event activity UI
 
-Set DATABASE_URL to a PostgreSQL connection string for persistence, then:
+## SQ networking
+Allen & Heath documents MIDI-over-TCP/IP for SQ and specifies port 51325 for network MIDI clients. The server must be able to reach the SQ on the same local network.
 
-npm install
-npm start
+Set DATABASE_URL for persistence, then run:
 
-Without DATABASE_URL the UI still runs, while persistence endpoints report that the database is not configured.
+    npm install
+    npm start
 
-## Architecture
+Open the server on port 3000.
 
-- public/ — futuristic workspace UI
-- server.js — HTTP/API/event layer
-- PostgreSQL — projects, modules, events, users
-- future layers — authentication, realtime, workers, AI agents, media, marketplace, integrations
+## Safety
+This app controls live audio equipment. Keep it on a trusted LAN and add authentication/VPN before exposing it outside the local network. The first version deliberately exposes only a small set of documented MIDI actions.
+
+## Next integration
+Live meters/read-back, DCA and mute groups, EQ/gate/compressor control, device discovery, richer diagnostics, authentication, and additional equipment adapters.
